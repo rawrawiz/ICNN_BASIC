@@ -79,10 +79,7 @@ class alexnet(nn.Module):
         w = np.concatenate((w, w), axis=1)
         self.conv3[4].weight.data.copy_(torch.from_numpy(w))
         self.conv3[4].bias.data.copy_(torch.from_numpy(b.reshape(-1)))
-
-        torch.nn.init.normal_(self.mask1[0].weight.data, mean=0, std=0.01)
-        torch.nn.init.normal_(self.mask2[0].weight.data, mean=0, std=0.01)
-
+        
         torch.nn.init.normal_(self.line[1].weight.data, mean=0, std=0.01)
         torch.nn.init.zeros_(self.line[1].bias.data)
         torch.nn.init.normal_(self.line[4].weight.data, mean=0, std=0.01)
