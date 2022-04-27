@@ -39,13 +39,11 @@ class alexnet(nn.Module):
             nn.ReLU(inplace=True),
             nn.Conv2d(384, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1)),
             nn.ReLU(inplace=True), )
-        self.mask1 = nn.Sequential(
-            conv_mask(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), labelnum=self.label_num, loss_type = self.losstype, ), )
+        
         self.maxpool3 = nn.Sequential(
             nn.ReLU(inplace=True),
             nn.MaxPool2d(kernel_size=(3, 3), stride=(2, 2), padding=(0, 0), dilation=(1, 1), ceil_mode=False), )
-        self.mask2 = nn.Sequential(
-            conv_mask(256, 4096, kernel_size=(6, 6), stride=(1, 1), padding=(0, 0), labelnum=self.label_num, loss_type = self.losstype, ), )
+        
         self.relu = nn.Sequential(
             nn.ReLU(inplace=True), )
         self.line = nn.Sequential(
@@ -100,10 +98,8 @@ class alexnet(nn.Module):
         x = self.maxpool2(x)
 
         x = self.conv3(x)
-        x = self.mask1[0](x, label, Iter, density)
         x = self.maxpool3(x)
-
-        x = self.mask2[0](x, label, Iter, density)
+        
         x = self.relu(x)
         x = self.line(x)
         return x
