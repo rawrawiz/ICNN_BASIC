@@ -30,7 +30,6 @@ def get_x(net, im, label, Iter, density,model):
         x = net.maxpool2(x)
 
         x = net.conv3(x)
-        x = net.mask1[0](x, label, Iter, density)
         x = net.maxpool3(x)
     elif model == "vgg_s":
         x = net.conv1(im)
