@@ -41,7 +41,6 @@ class alexnet(nn.Module):
             nn.ReLU(inplace=True), )
         
         self.maxpool3 = nn.Sequential(
-            nn.ReLU(inplace=True),
             nn.MaxPool2d(kernel_size=(3, 3), stride=(2, 2), padding=(0, 0), dilation=(1, 1), ceil_mode=False), )
         
         self.relu = nn.Sequential(
