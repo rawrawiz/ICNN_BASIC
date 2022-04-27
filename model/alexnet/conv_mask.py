@@ -87,10 +87,10 @@ def get_sliceMag(sliceMag,label,x):
 class conv_mask_F(Function):
     @staticmethod
     def forward(self, x, weight, bias, mask_weight, padding, label, Iter, density, mask_parameter):
-        bs = x.shape[0]
-        depth = x.shape[1]
-        h = x.shape[2]
-        w = x.shape[3]
+        bs = 8 #x.shape[0]
+        depth =256 #x.shape[1]
+        h = 6 #x.shape[2]
+        w = 6 #x.shape[3]
         posTemp_x = torch.linspace(-1, 1, h).reshape(-1, 1).repeat([depth, 1, w])
         posTemp_y = torch.linspace(-1, 1, w).repeat([depth, h, 1])
         posTempX = posTemp_x.repeat([bs, 1, 1, 1]).cuda()
