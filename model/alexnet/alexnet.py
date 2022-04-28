@@ -35,16 +35,17 @@ class alexnet(nn.Module):
         self.conv3 = nn.Sequential(
             nn.Conv2d(256, 384, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1)),
             nn.ReLU(inplace=True),
+            nn.LocalResponseNorm(5, alpha=0.00002, beta=0.75, k=1.0),
             nn.Conv2d(384, 384, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1)),
             nn.ReLU(inplace=True),
+            nn.LocalResponseNorm(5, alpha=0.00002, beta=0.75, k=1.0),
             nn.Conv2d(384, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1)),
-            nn.ReLU(inplace=True), )
+            nn.ReLU(inplace=True),
+            nn.LocalResponseNorm(5, alpha=0.00002, beta=0.75, k=1.0),)
         
         self.maxpool3 = nn.Sequential(
             nn.MaxPool2d(kernel_size=(3, 3), stride=(2, 2), padding=(0, 0), dilation=(1, 1), ceil_mode=False), )
         
-        self.relu = nn.Sequential(
-            nn.ReLU(inplace=True), )
         self.line = nn.Sequential(
             nn.Dropout2d(p=self.dropoutrate),
             nn.Conv2d(4096, 4096, kernel_size=(1, 1), stride=(1, 1), padding=(0, 0)),
