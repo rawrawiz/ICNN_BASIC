@@ -71,13 +71,13 @@ class alexnet(nn.Module):
         w, b = data['layers'][0][10][0]['weights'][0][0]
         w = w.transpose([3, 2, 0, 1])
         w = np.concatenate((w, w), axis=1)
-        self.conv3[3].weight.data.copy_(torch.from_numpy(w))
-        self.conv3[3].bias.data.copy_(torch.from_numpy(b.reshape(-1)))
+        self.conv3[2].weight.data.copy_(torch.from_numpy(w))
+        self.conv3[2].bias.data.copy_(torch.from_numpy(b.reshape(-1)))
         w, b = data['layers'][0][12][0]['weights'][0][0]
         w = w.transpose([3, 2, 0, 1])
         w = np.concatenate((w, w), axis=1)
-        self.conv3[6].weight.data.copy_(torch.from_numpy(w))
-        self.conv3[6].bias.data.copy_(torch.from_numpy(b.reshape(-1)))
+        self.conv3[4].weight.data.copy_(torch.from_numpy(w))
+        self.conv3[4].bias.data.copy_(torch.from_numpy(b.reshape(-1)))
         
         torch.nn.init.normal_(self.line[1].weight.data, mean=0, std=0.01)
         torch.nn.init.zeros_(self.line[1].bias.data)
