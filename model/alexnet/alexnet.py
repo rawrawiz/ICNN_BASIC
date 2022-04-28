@@ -84,7 +84,7 @@ class alexnet(nn.Module):
         torch.nn.init.normal_(self.line[4].weight.data, mean=0, std=0.01)
         torch.nn.init.zeros_(self.line[4].bias.data)
 
-    def forward(self, x):
+    def forward(self, x, label, Iter, density):
         x = self.conv1(x)
         x = F.pad(x, (0, 1, 0, 1))
         x = self.maxpool1(x)
