@@ -35,15 +35,13 @@ class alexnet(nn.Module):
         self.conv3 = nn.Sequential(
             nn.Conv2d(256, 384, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1)),
             nn.ReLU(inplace=True),
-            nn.LocalResponseNorm(5, alpha=0.00002, beta=0.75, k=1.0),
             nn.Conv2d(384, 384, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1)),
             nn.ReLU(inplace=True),
-            nn.LocalResponseNorm(5, alpha=0.00002, beta=0.75, k=1.0),
             nn.Conv2d(384, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1)),
-            nn.ReLU(inplace=True),
-            nn.LocalResponseNorm(5, alpha=0.00002, beta=0.75, k=1.0),)
+            nn.ReLU(inplace=True), )
         
         self.maxpool3 = nn.Sequential(
+            nn.ReLU(inplace=True),
             nn.MaxPool2d(kernel_size=(3, 3), stride=(2, 2), padding=(0, 0), dilation=(1, 1), ceil_mode=False), )
         self.relu = nn.Sequential(
             nn.ReLU(inplace=True), )
@@ -86,7 +84,7 @@ class alexnet(nn.Module):
         torch.nn.init.normal_(self.line[4].weight.data, mean=0, std=0.01)
         torch.nn.init.zeros_(self.line[4].bias.data)
 
-    def forward(self, x, label, Iter, density):
+    def forward(self, x):
         x = self.conv1(x)
         x = F.pad(x, (0, 1, 0, 1))
         x = self.maxpool1(x)
