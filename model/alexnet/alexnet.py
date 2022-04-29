@@ -95,9 +95,11 @@ class alexnet(nn.Module):
 
         x = self.conv3(x)
         x = self.maxpool3(x)
-        
+        print(x.shape)
         x = self.relu(x)
+        print(x.shape)
         x = self.line(x)
+        print(x.shape)
         return x
 
 
