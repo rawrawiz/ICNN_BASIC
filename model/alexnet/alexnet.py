@@ -102,11 +102,6 @@ class alexnet(nn.Module):
         print(x.shape)
         x = self.relu(x)
         print(x.shape)
-        x=self.flatten(x)
-        print(x.shape)
-        x=torch.unsqueeze(x,2)
-        print(x.shape)
-        x=torch.unsqueeze(x,3)
         x = self.line(x)
         print(x.shape)
         return x
