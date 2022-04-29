@@ -104,8 +104,8 @@ class alexnet(nn.Module):
         print(x.shape)
         x = self.line1(x)
         print(x.shape)
-        x = torch.unsqueeze()
-        x = torch.unsqueeze()
+        x = torch.unsqueeze(x,2)
+        x = torch.unsqueeze(x,3)
         print(x.shape)
         x = self.line2(x)
         return x
