@@ -9,8 +9,6 @@ from scipy.io import loadmat
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from model.alexnet.conv_mask import conv_mask
-
 
 
 class alexnet(nn.Module):
@@ -45,7 +43,7 @@ class alexnet(nn.Module):
             nn.MaxPool2d(kernel_size=(3, 3), stride=(2, 2), padding=(0, 0), dilation=(1, 1), ceil_mode=False), )
         
    
-        self.relu = nn.ReLU(inplace=False)
+        self.relu = nn.ReLU(inplace=True)
         
         self.line1 = nn.Sequential(
             nn.Dropout2d(p=self.dropoutrate),
