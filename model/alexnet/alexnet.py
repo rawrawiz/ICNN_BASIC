@@ -99,16 +99,16 @@ class alexnet(nn.Module):
 
         x = self.conv3(x)
         x = self.maxpool3(x)
-        print(x.shape)
+        
         x = self.relu(x)
-        print(x.shape)
+        
         x = self.line1(x)
-        print(x.shape)
+        
         x = self.fc1(x)
         x = self.fc2(x)
         x = torch.unsqueeze(x,2)
         x = torch.unsqueeze(x,3)
-        print(x.shape)
+       
         x = self.line2(x)
         return x
 
