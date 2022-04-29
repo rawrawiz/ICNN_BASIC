@@ -47,7 +47,7 @@ class alexnet(nn.Module):
    
         self.relu = nn.Sequential(
             nn.ReLU(inplace=True), )
-        self.flatten = nn.Flatten(0,-1)
+        self.flatten = nn.Flatten(start_dim=1, end_dim=3)
         
         self.line = nn.Sequential(
             nn.Dropout2d(p=self.dropoutrate),
@@ -104,6 +104,9 @@ class alexnet(nn.Module):
         print(x.shape)
         x=self.flatten(x)
         print(x.shape)
+        x=torch.unsqueeze(x,2)
+        print(x.shape)
+        x=torch.unsqueeze(x,3)
         x = self.line(x)
         print(x.shape)
         return x
