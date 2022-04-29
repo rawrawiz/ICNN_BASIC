@@ -51,9 +51,9 @@ class alexnet(nn.Module):
         self.line = nn.Sequential(
             nn.Dropout2d(p=self.dropoutrate),
             nn.Conv2d(256,256, kernel_size=(1, 1), stride=(1, 1), padding=(0, 0)),
-            nn.Flatten(start_dim=1, end_dim=3),
             nn.ReLU(inplace=True),
             nn.Dropout2d(p=self.dropoutrate),
+            nn.Flatten(start_dim=1, end_dim=3),
             nn.Conv2d(4096, self.label_num, kernel_size=(1, 1), stride=(1, 1), padding=(0, 0)), )
         self.init_weight()
 
