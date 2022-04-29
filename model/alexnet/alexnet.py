@@ -47,7 +47,7 @@ class alexnet(nn.Module):
             nn.ReLU(inplace=True), )
         self.line = nn.Sequential(
             nn.Dropout2d(p=self.dropoutrate),
-            nn.Conv2d(4096, 256, kernel_size=(1, 1), stride=(1, 1), padding=(0, 0)),
+            nn.Conv2d(4096, 4096, kernel_size=(1, 1), stride=(1, 1), padding=(0, 0)),
             nn.ReLU(inplace=True),
             nn.Dropout2d(p=self.dropoutrate),
             nn.Conv2d(4096, self.label_num, kernel_size=(1, 1), stride=(1, 1), padding=(0, 0)), )
