@@ -45,8 +45,7 @@ class alexnet(nn.Module):
             nn.MaxPool2d(kernel_size=(3, 3), stride=(2, 2), padding=(0, 0), dilation=(1, 1), ceil_mode=False), )
         
    
-        self.relu = nn.Sequential(
-            nn.ReLU(inplace=True), )
+        self.relu = nn.ReLU(inplace=False)
         
         self.line1 = nn.Sequential(
             nn.Dropout2d(p=self.dropoutrate),
