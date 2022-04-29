@@ -43,8 +43,12 @@ class alexnet(nn.Module):
         self.maxpool3 = nn.Sequential(
             nn.ReLU(inplace=True),
             nn.MaxPool2d(kernel_size=(3, 3), stride=(2, 2), padding=(0, 0), dilation=(1, 1), ceil_mode=False), )
+        
+   
         self.relu = nn.Sequential(
             nn.ReLU(inplace=True), )
+        self.flatten = nn.Flatten((256,6,6),(None,9216))
+        
         self.line = nn.Sequential(
             nn.Dropout2d(p=self.dropoutrate),
             nn.Conv2d(256,256, kernel_size=(1, 1), stride=(1, 1), padding=(0, 0)),
@@ -97,6 +101,8 @@ class alexnet(nn.Module):
         x = self.maxpool3(x)
         print(x.shape)
         x = self.relu(x)
+        print(x.shape)
+        x=self.flatten(x)
         print(x.shape)
         x = self.line(x)
         print(x.shape)
