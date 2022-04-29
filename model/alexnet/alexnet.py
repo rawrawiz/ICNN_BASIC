@@ -57,13 +57,13 @@ class alexnet(nn.Module):
         self.line2 = nn.Conv2d(4096, self.label_num, kernel_size=(1, 1), stride=(1, 1), padding=(0, 0))
         """
         self.classifier = nn.Sequential(
-            nn.Dropout(p=dropout),
+            nn.Dropout(p=self.dropoutrate),
             nn.Linear(256 * 6 * 6, 4096),
             nn.ReLU(inplace=True),
-            nn.Dropout(p=dropout),
+            nn.Dropout(p=self.dropoutrate),
             nn.Linear(4096, 4096),
             nn.ReLU(inplace=True),
-            nn.Linear(4096, label_num),
+            nn.Linear(4096, self.label_num),
         )
         self.init_weight()
 
