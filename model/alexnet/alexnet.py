@@ -54,7 +54,7 @@ class alexnet(nn.Module):
             nn.ReLU(inplace=True),
             nn.Dropout2d(p=self.dropoutrate),
             nn.Flatten(start_dim=1, end_dim=3),)
-        self.line2 = nn.Conv2d(9216, self.label_num, kernel_size=(1, 1), stride=(1, 1), padding=(0, 0))
+        self.line2 = nn.Conv2d(4096, self.label_num, kernel_size=(1, 1), stride=(1, 1), padding=(0, 0))
         self.init_weight()
 
     def init_weight(self):
@@ -104,6 +104,7 @@ class alexnet(nn.Module):
         print(x.shape)
         x = self.line1(x)
         print(x.shape)
+        x = torch.reshape(x,(8,4096))
         x = torch.unsqueeze(x,2)
         x = torch.unsqueeze(x,3)
         print(x.shape)
